@@ -1,12 +1,17 @@
 import OptionTicks from "./OptionTicks"
-export default function Options(){
+// import { useState } from "react"
+export default function Options(props){
+    // const [checked, setCheck] = useState([])
+    function checkBoxHandler(newSelected, checked){
+        props.callBack(newSelected, checked)
+    }
     return <>
-        <OptionTicks optionName="Phone"></OptionTicks>
-        <OptionTicks optionName="Email"></OptionTicks>
-        <OptionTicks optionName="Location"></OptionTicks>
-        <OptionTicks optionName="Linkdin"></OptionTicks>
-        <OptionTicks optionName="Github"></OptionTicks>
-        <OptionTicks optionName="Instagram"></OptionTicks>
+        <OptionTicks callBack={checkBoxHandler} optionName="Phone" ></OptionTicks>
+        <OptionTicks callBack={checkBoxHandler} optionName="Email"></OptionTicks>
+        <OptionTicks callBack={checkBoxHandler} optionName="Location"></OptionTicks>
+        <OptionTicks callBack={checkBoxHandler} optionName="Linkdin"></OptionTicks>
+        <OptionTicks callBack={checkBoxHandler} optionName="Github"></OptionTicks>
+        <OptionTicks callBack={checkBoxHandler} optionName="Instagram"></OptionTicks>
     </>
 
 }
