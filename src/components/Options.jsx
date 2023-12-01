@@ -1,17 +1,16 @@
-import OptionTicks from "./OptionTicks"
-// import { useState } from "react"
+import OptionTick from "./OptionTick"
+import { useState } from "react"
 export default function Options(props){
-    // const [checked, setCheck] = useState([])
-    function checkBoxHandler(newSelected, checked){
-        props.callBack(newSelected, checked)
+    const [options, setOptions] = useState(props.options)
+    function checkBoxHandler(updatedOption){
+        const updatedOptions = options.map((option) => (option.id == updatedOption.id 
+                                        ? {...option, checked: !option.checked}
+                                        : option))
+        setOptions(updatedOptions)
+        props.callBack(updatedOptions)
     }
     return <>
-        <OptionTicks callBack={checkBoxHandler} optionName="Phone" ></OptionTicks>
-        <OptionTicks callBack={checkBoxHandler} optionName="Email"></OptionTicks>
-        <OptionTicks callBack={checkBoxHandler} optionName="Location"></OptionTicks>
-        <OptionTicks callBack={checkBoxHandler} optionName="Linkdin"></OptionTicks>
-        <OptionTicks callBack={checkBoxHandler} optionName="Github"></OptionTicks>
-        <OptionTicks callBack={checkBoxHandler} optionName="Instagram"></OptionTicks>
+        {options.map((option) => <OptionTick callBack={checkBoxHandler} key={option.id} option={option}/>)}
     </>
 
 }
